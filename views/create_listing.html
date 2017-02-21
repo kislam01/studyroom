@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title> Studyroom - Add Entry </title>
+	<meta charset = "utf-8" />
+	<link href = "create_listing_style.css" rel = "stylesheet" type = "text/css"/>
+</head>
+
+<body>
+
+	<div id = "home_button"> 
+		<a href="http://localhost:5000/mainpage">
+			<button>Home</button>
+		</a>	
+	</div>	
+	<div id="logout_button">
+		<a href="/logout">
+			<button>Log Out</button>
+		</a>	
+	</div>				
+	<div id="profile_button">
+		<a href="http://localhost:5000/">
+			<button>View Profile</button>
+		</a>
+	</div>
+	<div id = "title">
+		<h1> Add a New Entry </h1>
+	</div>
+
+
+	
+	<script>
+	var request = new XMLHttpRequest();
+    var name;
+    var course;
+    var problem;
+    var location;
+
+	function sendRequest()
+	{
+		course = document.getElementById("course").value;
+		problem = document.getElementById("problem").value;
+		student_location = document.getElementById("student_location").value;
+
+		if (course=='' || problem=='' || student_location=='') {
+			alert("Please fill up all the required fields");
+			return;
+		}
+		params = "course=" + course + "&problem=" + problem + "&student_location=" + student_location;
+		request.open("POST", "http://localhost:5000/sendData", true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  		request.send(params);
+  		alert('Your data has been successfully added.');
+
+	}		 
+
+
+	</script>
+
+	
+	<p>Course: <br><input type="text" id="course" size="41" class="inputs"></p>
+	<p>Assignment/Problem: <br><textarea id="problem" cols="40" rows="5" class="inputs"></textarea> </p>
+	<p>Location: <br><textarea id="student_location" cols="40" rows="3" class="inputs"></textarea></p>
+    <p><button onclick="sendRequest()" id="send">Submit</button></p>
+</body>
+
+</html>

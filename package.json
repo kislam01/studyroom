@@ -1,0 +1,38 @@
+{
+  "name": "groupstudy",
+  "version": "0.0.1",
+  "description": "A sample Node.js app using Express 4",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "2.3.3",
+    "bcryptjs": "^0.7.12",
+    "express-handlebars": "^3.0.0",
+    "mongodb": "latest",  
+    "express": "4.13.3",
+    "body-parser": "latest",
+    "validator": "latest",
+    "morgan": "^1.7.0",
+    "passport": "^0.2.0",
+    "passport-facebook": "^1.0.3",
+    "passport-google": "^0.3.0",
+    "passport-local": "^1.0.0",
+    "passport-twitter": "^1.0.2",
+    "q": "^1.0.1"     
+  },
+  "engines": {
+    "node": "0.12.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stamaleiferis/studyroom_backend"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}

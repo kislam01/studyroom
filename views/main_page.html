@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>StudyRoom Home</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="main_stylesheet.css" /> 
+
+		
+		<script>
+
+			var request = new XMLHttpRequest();
+
+			function get_entry_list() {
+				request.open("GET", "http://localhost:5000/getEntries",true);
+
+				request.onreadystatechange = function() {
+					if (request.readyState == 4 && request.status == 200){
+						data = request.responseText;
+						parsed_data = JSON.parse(data);
+						display_entries();
+						console.log(parsed_data);
+						}
+					}
+				request.send();
+			}
+			
+
+			function display_entries() {
+				var HTML = "<h3>Current Entries: </h3><table border='1'><tr><th>Course</th><th>Username</th><th>Student Name</th><th>Assignment/Problem</th><th>Location</th></tr>";
+				if (parsed_data.length == 0) {
+					document.getElementById("list_entries").innerHTML += "<p>Sorry, there are currently no entries from students </p>";
+				}else {
+					for (var count = 0; count < parsed_data.length; count++){
+						user_id = parsed_data[count]["user_id"];
+						student_name = parsed_data[count]["student_name"];
+						course = parsed_data[count]["course"];
+						problem = parsed_data[count]["problem"];
+						student_location = parsed_data[count]["student_location"];
+
+						HTML += "<tr><td>" + course + "</td><td>" + user_id + "</td><td>" + student_name + "</td><td>" + problem + "</td><td>" + student_location + "</td></tr>" ; 
+					}
+					HTML += "</table>";
+					document.getElementById("list_entries").innerHTML = HTML;
+				}
+
+			}
+			//document.getElementById("list_entries").innerHTML += "<li><b>" + course + "</b><br>" + "<b>Username: </b>" + user_id + "<br>" + "<b>Student Name: </b>" + student_name + "<br>" + "<b>Assignment/Problem: </b>" + problem + "<br>" + "<b>Location: </b>" + student_location + "</li><br>";
+
+
+		</script>
+
+
+	</head>
+
+	<body onload="get_entry_list()">
+		
+		<div id="profile_button">
+			<a href="http://localhost:5000/">
+				<button>View Profile</button>
+			</a>
+		</div>	
+		<div id="logout_button">
+			<a href="/logout">
+				<button>Log Out</button>
+			</a>	
+		</div>			
+		<div id="home_title">
+			<h1> Studyroom Homepage </h1>
+		</div>	
+
+		<div id="list_entries">
+		</div>
+
+		<div id="create_entry_button">
+			<br>
+			<a href="http://localhost:5000/createlisting">
+				<button>Add New Entry</button>
+			</a>	
+		</div>
+
+	
+	</body>
+
+
+</html>
