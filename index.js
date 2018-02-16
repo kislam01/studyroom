@@ -13,16 +13,15 @@ var express = require('express'),
     GoogleStrategy = require('passport-google'),
     FacebookStrategy = require('passport-facebook');
 
-//We will be creating these two files shortly
+
  var config = require('./config.js'), //config file contains all tokens and other private info
-    funct = require('./functions.js'); //funct file contains our helper functions for our Passport and database work
+    funct = require('./functions.js'); //funct file contains helper functions for Passport and database work
 
 var app = express();
 
 
 //===============PASSPORT===============
 
-//This section will contain our work with Passport
 
 // Passport session setup.
 passport.serializeUser(function(user, done) {
@@ -127,7 +126,7 @@ app.use(function(req, res, next){
 
 // Configure express to use handlebars templates
 var hbs = exphbs.create({
-    defaultLayout: 'main', //we will be creating this layout shortly
+    defaultLayout: 'main', 
 });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -238,6 +237,5 @@ app.get('/logout', function(req, res){
 });
 
 //===============PORT=================
-var port = process.env.PORT || 5000; //select your port or let it pull from your .env file
 app.listen(port);
 console.log("listening on " + port + "!");
